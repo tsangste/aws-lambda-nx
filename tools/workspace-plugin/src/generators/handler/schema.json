@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Handler",
+  "title": "Handler creation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Handler name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The project where the handler will be located.",
+      "x-prompt": "Which project will this handler be located in?",
+      "x-dropdown": "projects"
+    }
+  },
+  "required": ["name", "project"]
+}

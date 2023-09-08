@@ -4,6 +4,11 @@
       "factory": "./src/generators/stack/generator",
       "schema": "./src/generators/stack/schema.json",
       "description": "stack generator"
+    },
+    "handler": {
+      "factory": "./src/generators/handler/generator",
+      "schema": "./src/generators/handler/schema.json",
+      "description": "handler generator"
     }
   }
 }

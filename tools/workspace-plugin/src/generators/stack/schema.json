@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$id": "Stack",
-  "title": "",
+  "title": "Stack creation",
   "type": "object",
   "properties": {
     "stack": {
