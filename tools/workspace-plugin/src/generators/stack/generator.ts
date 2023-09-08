@@ -19,7 +19,60 @@ export async function StackGenerator(
     root: projectRoot,
     projectType: 'application',
     sourceRoot: `${projectRoot}/src`,
-    targets: {},
+    targets: {
+      build: {
+        executor: 'nx:run-commands',
+        options: {
+          cwd: projectRoot,
+          color: true,
+          command: 'sls package'
+        }
+      },
+      deploy: {
+        executor: 'nx:run-commands',
+        options: {
+          cwd: projectRoot,
+          color: true,
+          command: 'sls deploy --verbose'
+        },
+        dependsOn: [
+          {
+            target: 'deploy',
+            projects: 'dependencies'
+          }
+        ]
+      },
+      lint: {
+        executor: '@nx/linter:eslint',
+        options: {
+          lintFilePatterns: [`${projectRoot}/**/*.ts`]
+        }
+      },
+      remove: {
+        executor: 'nx:run-commands',
+        options: {
+          cwd: projectRoot,
+          color: true,
+          command: 'sls remove'
+        }
+      },
+      serve: {
+        executor: 'nx:run-commands',
+        options: {
+          cwd: projectRoot,
+          color: true,
+          command: 'sls offline start'
+        }
+      },
+      test: {
+        executor: '@nx/jest:jest',
+        outputs: [`coverage/${projectRoot}`],
+        options: {
+          jestConfig: `${projectRoot}/jest.config.js`,
+          passWithNoTests: true
+        }
+      }
+    },
   });
 
   generateFiles(tree, join(__dirname, 'files'), projectRoot, {...options, fileName});
