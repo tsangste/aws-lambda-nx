@@ -1,4 +1,4 @@
-import { main } from './<%= handler %>-handler';
+import { main } from './<%= handler %>.handler';
 
 describe('<%= handler %>', () => {
 

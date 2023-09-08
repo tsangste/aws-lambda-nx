@@ -1,3 +1,4 @@
 export interface StackGeneratorSchema {
-  name: string;
+  stack: string
+  handler: string
 }

@@ -2,23 +2,28 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  Tree,
+  names,
+  Tree
 } from '@nx/devkit';
-import * as path from 'path';
+import { join } from 'path';
 import { StackGeneratorSchema } from './schema';
 
 export async function StackGenerator(
   tree: Tree,
   options: StackGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
-  addProjectConfiguration(tree, options.name, {
+  const projectRoot = `stacks/${options.stack}`;
+  const { fileName } = names(options.handler);
+
+  addProjectConfiguration(tree, options.stack, {
     root: projectRoot,
     projectType: 'application',
     sourceRoot: `${projectRoot}/src`,
     targets: {},
   });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
+
+  generateFiles(tree, join(__dirname, 'files'), projectRoot, {...options, fileName});
+
   await formatFiles(tree);
 }
 

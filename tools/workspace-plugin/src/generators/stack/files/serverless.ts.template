@@ -8,7 +8,7 @@ export const serverlessConfig: Serverless = {
     ...baseServerlessConfiguration.provider,
   },
   functions: {
-    <%= handler %>: {
+    '<%= handler %>': {
       handler: 'src/<%= handler %>.handler.main',
     }
   }
