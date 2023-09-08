@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Stack",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "stack": {
+      "type": "string",
+      "description": "Stack name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the name of the stack?"
+    },
+    "handler": {
+      "type": "string",
+      "description": "Handler name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What is the name of the handler?"
+    }
+  },
+  "required": ["stack", "handler"]
+}
