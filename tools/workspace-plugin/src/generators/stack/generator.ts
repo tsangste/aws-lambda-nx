@@ -76,7 +76,8 @@ export async function StackGenerator(
     tags: ['stacks']
   });
 
-  generateFiles(tree, join(__dirname, 'files'), projectRoot, { ...options, fileName });
+  generateFiles(tree, join(__dirname, 'files'), projectRoot, { ...options });
+  generateFiles(tree, join(__dirname, '../shared-files/handle'), projectRoot, { name: options.handler, fileName });
 
   await formatFiles(tree);
 }
