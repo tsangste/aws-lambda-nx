@@ -1,6 +1,6 @@
 import { join } from 'path'
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration, addProjectConfiguration, generateFiles } from '@nx/devkit'
+import { Tree, addProjectConfiguration, generateFiles } from '@nx/devkit'
 
 import { tsquery } from '@phenomnomnominal/tsquery'
 
@@ -27,9 +27,6 @@ describe('handler generator', () => {
 
   it('should run successfully', async () => {
     await handlerGenerator(tree, options);
-
-    const config = readProjectConfiguration(tree, options.project);
-    expect(config).toBeDefined();
 
     const serverlessConfig = tree.read(`stacks/${options.project}/serverless.ts`);
     const contents = serverlessConfig.toString()

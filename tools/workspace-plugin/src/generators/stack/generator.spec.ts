@@ -1,6 +1,8 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nx/devkit'
 
+import { tsquery } from '@phenomnomnominal/tsquery'
+
 import { StackGenerator } from './generator';
 import { StackGeneratorSchema } from './schema';
 
@@ -14,7 +16,23 @@ describe('stack generator', () => {
 
   it('should run successfully', async () => {
     await StackGenerator(tree, options);
+
     const config = readProjectConfiguration(tree, 'stack');
     expect(config).toBeDefined();
+
+    expect(tree.exists(`stacks/${options.stack}/.eslintrc.json`))
+    expect(tree.exists(`stacks/${options.stack}/jest.config.ts`))
+    expect(tree.exists(`stacks/${options.stack}/serverless.ts`))
+    expect(tree.exists(`stacks/${options.stack}/tsconfig.app.json`))
+    expect(tree.exists(`stacks/${options.stack}/tsconfig.json`))
+    expect(tree.exists(`stacks/${options.stack}/tsconfig.spec.json`))
+    expect(tree.exists(`stacks/${options.stack}/src/${options.handler}.handler.ts`))
+    expect(tree.exists(`stacks/${options.stack}/src/${options.handler}.handler.spec.ts`))
+
+    const serverlessConfig = tree.read(`stacks/${options.stack}/serverless.ts`);
+    const contents = serverlessConfig.toString()
+
+    const nodes = tsquery.query(contents, `Identifier[name=${options.handler}] ~ ObjectLiteralExpression`)
+    expect(nodes.length).toEqual(1)
   });
 });
