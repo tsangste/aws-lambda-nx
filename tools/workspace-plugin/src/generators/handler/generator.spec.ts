@@ -32,9 +32,9 @@ describe('handler generator', () => {
     const contents = serverlessConfig.toString()
 
     const nodes = tsquery.query(contents, `Identifier[name=${options.name}] ~ ObjectLiteralExpression`)
-    expect(nodes.length).toEqual(1)
+    expect(nodes).toHaveLength(1)
 
-    expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.ts`))
-    expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.spec.ts`))
+    expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.ts`)).toBeTruthy()
+    expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.spec.ts`)).toBeTruthy()
   });
 });
