@@ -6,7 +6,7 @@
   ],
   "packageRules": [
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": [
         "^ts-node",
@@ -23,28 +23,28 @@
       "enabled": false
     },
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": ["^typescript"],
       "matchUpdateTypes": ["major", "minor"],
       "enabled": false
     },
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": ["^tslib"],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "enabled": false
     },
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": ["^@nx-"],
       "matchUpdateTypes": ["major", "minor", "patch", "pin"],
       "semanticCommitType": "fix"
     },
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": [
         "^@nrwl/",
@@ -59,7 +59,7 @@
       "semanticCommitType": "chore"
     },
     {
-      "groupName": "Nx monorepo",
+      "groupName": "nx",
       "matchManagers": ["npm"],
       "matchPackagePatterns": ["^@nrwl/", "^@nx/", "^nx$", "^@nx-", "^@ng-easy/"],
       "matchFileNames": ["package.json"],
