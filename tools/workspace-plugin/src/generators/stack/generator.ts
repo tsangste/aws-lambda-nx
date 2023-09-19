@@ -68,7 +68,7 @@ export async function StackGenerator(
         executor: '@nx/jest:jest',
         outputs: [`coverage/${projectRoot}`],
         options: {
-          jestConfig: `${projectRoot}/jest.config.js`,
+          jestConfig: `${projectRoot}/jest.config.ts`,
           passWithNoTests: true
         }
       }
