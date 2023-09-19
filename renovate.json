@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["nx, @nx/*"],
+      "groupName": "nx"
+    },
+    {
+      "matchPackageNames": ["@nestjs/*"],
+      "groupName": "nestjs"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    }
   ]
 }
