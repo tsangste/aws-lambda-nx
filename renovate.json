@@ -1,80 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":label(dependencies)"
-  ],
-  "packageRules": [
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": [
-        "^ts-node",
-        "^zone\\.js",
-        "^cypress$",
-        "^jest",
-        "@types/jest",
-        "^ts-jest",
-        "^rxjs",
-        "prettier$",
-        "^@typescript-eslint"
-      ],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": ["^typescript"],
-      "matchUpdateTypes": ["major", "minor"],
-      "enabled": false
-    },
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": ["^tslib"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": false
-    },
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": ["^@nx-"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin"],
-      "semanticCommitType": "fix"
-    },
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": [
-        "^@nrwl/",
-        "^@nx/",
-        "^nx$",
-        "^@angular-devkit/",
-        "^tslib",
-        "^ts-node",
-        "^@schematics/"
-      ],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin"],
-      "semanticCommitType": "chore"
-    },
-    {
-      "groupName": "nx",
-      "matchManagers": ["npm"],
-      "matchPackagePatterns": ["^@nrwl/", "^@nx/", "^nx$", "^@nx-", "^@ng-easy/"],
-      "matchFileNames": ["package.json"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin"],
-      "postUpgradeTasks": {
-        "commands": [
-          "npm ci --ignore-scripts",
-          "npm run prepare --if-present",
-          "npx --no-install nx migrate {{{depName}}} --from={{{depName}}}@{{{replace '^[^\\d]*' '' currentValue}}} --to={{{depName}}}@{{{replace '^[^\\d]*' '' newValue}}}",
-          "npm install --ignore-scripts",
-          "npx --no-install nx migrate --run-migrations --if-exists",
-          "rm -f migrations.json",
-          "npx --no-install nx run-many --target=lint --all --parallel --fix --skip-nx-cache"
-        ]
-      }
-    }
+    "local>tsangste/renovate-config",
+    "local>tsangste/renovate-config:serverless",
+    "local>tsangste/renovate-config:nx-monorepo",
+    "local>tsangste/renovate-config:github-actions"
   ]
 }
