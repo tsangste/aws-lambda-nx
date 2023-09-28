@@ -8,14 +8,6 @@ export const serverlessConfig: Serverless = {
     ...baseServerlessConfiguration.provider,
     apiGateway: {
       minimumCompressionSize: 1024,
-      // @ts-ignore
-      restApiId: {
-        'Fn::ImportValue': `dev-AppApiGW-restApiId`,
-      },
-      // @ts-ignore
-      restApiRootResourceId: {
-        'Fn::ImportValue': `dev-AppApiGW-rootResourceId`,
-      },
     },
   },
   functions: {
