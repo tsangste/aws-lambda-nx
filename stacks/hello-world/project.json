@@ -51,7 +51,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["coverage/stacks/hello-world"],
       "options": {
-        "jestConfig": "stacks/hello-world/jest.config.js",
+        "jestConfig": "stacks/hello-world/jest.config.ts",
         "passWithNoTests": true
       }
     }
