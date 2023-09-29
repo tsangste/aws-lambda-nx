@@ -1,9 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>tsangste/renovate-config",
-    "local>tsangste/renovate-config:serverless",
-    "local>tsangste/renovate-config:nx-monorepo",
-    "local>tsangste/renovate-config:github-actions"
+    "local>tsangste/renovate-configs",
+    "local>tsangste/renovate-configs:serverless",
+    "local>tsangste/renovate-configs:nx-monorepo",
+    "local>tsangste/renovate-configs:github-actions"
   ]
 }
