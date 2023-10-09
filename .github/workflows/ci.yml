@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set NX sha
-        uses: nrwl/nx-set-shas@v3
+        uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: ${{ github.base_ref || github.ref_name }}
 
