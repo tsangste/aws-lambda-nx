@@ -3,7 +3,7 @@ import {
   formatFiles,
   generateFiles,
   names,
-  Tree
+  Tree,
 } from '@nx/devkit';
 import { join } from 'path';
 import { StackGeneratorSchema } from './schema';
@@ -25,59 +25,62 @@ export async function StackGenerator(
         options: {
           cwd: projectRoot,
           color: true,
-          command: 'sls package'
-        }
+          command: 'sls package',
+        },
       },
       deploy: {
         executor: 'nx:run-commands',
         options: {
           cwd: projectRoot,
           color: true,
-          command: 'sls deploy --verbose'
+          command: 'sls deploy --verbose',
         },
         dependsOn: [
           {
             target: 'deploy',
-            projects: 'dependencies'
-          }
-        ]
+            projects: 'dependencies',
+          },
+        ],
       },
       lint: {
-        executor: '@nx/linter:eslint',
+        executor: '@nx/eslint:eslint',
         options: {
-          lintFilePatterns: [`${projectRoot}/**/*.ts`]
-        }
+          lintFilePatterns: [`${projectRoot}/**/*.ts`],
+        },
       },
       remove: {
         executor: 'nx:run-commands',
         options: {
           cwd: projectRoot,
           color: true,
-          command: 'sls remove'
-        }
+          command: 'sls remove',
+        },
       },
       serve: {
         executor: 'nx:run-commands',
         options: {
           cwd: projectRoot,
           color: true,
-          command: 'sls offline start'
-        }
+          command: 'sls offline start',
+        },
       },
       test: {
         executor: '@nx/jest:jest',
         outputs: [`coverage/${projectRoot}`],
         options: {
           jestConfig: `${projectRoot}/jest.config.ts`,
-          passWithNoTests: true
-        }
-      }
+          passWithNoTests: true,
+        },
+      },
     },
-    tags: ['stacks']
+    tags: ['stacks'],
   });
 
   generateFiles(tree, join(__dirname, 'files'), projectRoot, { ...options });
-  generateFiles(tree, join(__dirname, '../shared-files/handle'), projectRoot, { name: options.handler, fileName });
+  generateFiles(tree, join(__dirname, '../shared-files/handle'), projectRoot, {
+    name: options.handler,
+    fileName,
+  });
 
   await formatFiles(tree);
 }

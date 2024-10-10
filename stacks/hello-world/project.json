@@ -1,5 +1,6 @@
 {
-  "root": "stacks/hello-world",
+  "name": "hello-world",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "stacks/hello-world/src",
   "targets": {
@@ -42,17 +43,13 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": ["stacks/hello-world/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["coverage/stacks/hello-world"],
       "options": {
-        "jestConfig": "stacks/hello-world/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "stacks/hello-world/jest.config.ts"
       }
     }
   },
