@@ -72,13 +72,18 @@
             "types": ["function"],
             "format": ["camelCase", "PascalCase"]
           }
-        ]
+        ],
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
       }
     },
     {
       "files": ["*.js", "*.mjs"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
