@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 
 /**
  *
@@ -11,10 +11,11 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  */
 
 export const main = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'hello world',
-        }),
-    };
-};
+  console.log('event', event)
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'hello world'
+    })
+  }
+}
