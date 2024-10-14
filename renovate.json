@@ -2,12 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>tsangste/renovate-configs:nx-monorepo",
-    "local>tsangste/renovate-configs:github-actions"
-  ],
-  "packageRules": [
-    {
-      "packagePatterns": ["*"],
-      "enabled": false
-    }
+    "local>tsangste/renovate-configs:github-actions",
+    "local>tsangste/renovate-configs:ignore-packages"
   ]
 }
