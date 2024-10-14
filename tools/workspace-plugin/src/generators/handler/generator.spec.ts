@@ -31,8 +31,8 @@ describe('handler generator', () => {
     const serverlessConfig = tree.read(`stacks/${options.project}/serverless.ts`);
     const contents = serverlessConfig.toString()
 
-    const nodes = tsquery.query(contents, `Identifier[name=${options.name}] ~ ObjectLiteralExpression`)
-    expect(nodes).toHaveLength(1)
+    const nodes = tsquery.query(contents, `PropertyAssignment:has(Identifier[name=functions]) StringLiteral`)
+    expect(nodes).toHaveLength(2)
 
     expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.ts`)).toBeTruthy()
     expect(tree.exists(`stacks/${options.project}/src/${options.name}.handler.spec.ts`)).toBeTruthy()
