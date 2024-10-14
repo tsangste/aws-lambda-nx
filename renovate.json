@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
+    "local>tsangste/renovate-configs",
     "local>tsangste/renovate-configs:aws",
     "local>tsangste/renovate-configs:typescript",
     "local>tsangste/renovate-configs:nx-monorepo",
