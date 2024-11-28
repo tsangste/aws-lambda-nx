@@ -19,7 +19,7 @@ export async function handlerGenerator(
   generateFiles(tree, join(__dirname, '../shared-files/handle'), projectRoot, { ...options, fileName });
 
   const serverlessConfig = join(projectRoot, 'serverless.ts');
-  const newContent = tsquery.replace(tree.read(serverlessConfig).toString(), 'Identifier[name=functions] ~ ObjectLiteralExpression', node => {
+  const newContent = tsquery.replace(tree.read(serverlessConfig).toString(), 'PropertyAssignment:has(Identifier[name=functions]) ObjectLiteralExpression', node => {
     const propAst = factory.createPropertyAssignment(
       factory.createStringLiteral(options.name),
       factory.createObjectLiteralExpression(
@@ -39,7 +39,8 @@ export async function handlerGenerator(
     // Kinda hacky as we move into stringy stuff, but it works for what we need
     const content = node.getChildren()[1];
 
-    return `{${content.getFullText()}${print(propAst)}}`;
+    const fullText = content.getFullText()
+    return fullText.includes('{') ? `{${fullText}${print(propAst)}}` : node.getFullText();
   });
   tree.write(serverlessConfig, newContent);
 

@@ -32,7 +32,7 @@ describe('stack generator', () => {
     const serverlessConfig = tree.read(`stacks/${options.stack}/serverless.ts`);
     const contents = serverlessConfig.toString()
 
-    const nodes = tsquery.query(contents, `Identifier[name=${options.handler}] ~ ObjectLiteralExpression`)
+    const nodes = tsquery.query(contents, `PropertyAssignment:has(Identifier[name=${options.handler}]) StringLiteral`)
     expect(nodes).toHaveLength(1)
   });
 });
